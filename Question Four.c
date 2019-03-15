@@ -33,7 +33,7 @@ int main() {
     // Start calculation in a new thread
     pthread_t thread_id;
     pthread_create(&thread_id, NULL, fibonacci_thread, NULL);
-    int yes = pthread_join(thread_id, NULL);
+    pthread_join(thread_id, NULL);
     
     // Print results
     for (int i = 0; i <= last; i++) {
