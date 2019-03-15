@@ -23,6 +23,7 @@ void *fibonacci_thread(void *vargp) {
 
 int main() {
 
+    // Ask user for input
     printf("Enter a non-negative integer: ");
     if (!scanf(" %d", &last) || last < 0) { // Check if valid input
         printf("Sorry, that's an invalid entry.\nExiting.");
