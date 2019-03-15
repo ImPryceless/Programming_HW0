@@ -5,7 +5,7 @@
 #include <pthread.h>
 
 // Initialize global variables
-unsigned long seq[1000000] = {-1};
+unsigned long long seq[1000000] = {-1};
 int last;
 
 void *fibonacci_thread(void *vargp) {
@@ -36,7 +36,7 @@ int main() {
     
     // Print results
     for (int i = 0; i <= last; i++) {
-    	printf("%ld\n", seq[i]);
+    	printf("%lld\n", seq[i]);
     }
 
     return 0;
