@@ -5,7 +5,7 @@
 #include <pthread.h>
 
 // Initialize global variables
-long seq[47] = {-1};
+unsigned long seq[1000000] = {-1};
 int last;
 
 void *fibonacci_thread(void *vargp) {
@@ -24,7 +24,7 @@ void *fibonacci_thread(void *vargp) {
 int main() {
 
 	printf("Enter a non-negative integer: ");
-	if (!scanf(" %d", &last) /*|| last < 0 || last > 47*/) { // Check if valid input
+	if (!scanf(" %d", &last) || last < 0) { // Check if valid input
 		printf("Sorry, that's an invalid entry.\nExiting.");
 		return 0;
 	}
@@ -35,10 +35,9 @@ int main() {
     int yes = pthread_join(thread_id, NULL);
     
     // Print results
-    for (int i = 0; i <= last - 1; i++) {
-    	printf("%ld, ", seq[i]);
+    for (int i = 0; i <= last; i++) {
+    	printf("%ld\n", seq[i]);
     }
-    printf("%ld\n", seq[last]);
 
     return 0;
 }
