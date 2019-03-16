@@ -1,1 +1,67 @@
 
+//Class One
+
+import java.util.Scanner;  //for reading operation Scanner class imported
+
+public class PrimeThread extends Thread { //creating customized thread class extended by Thread
+	int number; //input number property
+	  
+	   PrimeThread(int number)//constructor with parameter
+	   {
+	       this.number=number;
+	   }
+	      
+	   public void run()//run method for thread execution
+	   {
+	       int count=0;//count for no. of times divisible
+	       try
+	       {
+	       for(int i=2; i<= number ; i++)//repeating each prime numbers up to number
+	           {
+	               for(int j=2; j<= i; j++)//j for repeating divide operations
+	               if( i % j == 0 )
+
+	            	   count++; //if mod is 0 then count increment
+	              
+	               if(count<=2)
+
+	System.out.println(i);//if no .of times divisible is <=2 then print number i
+	               count=0;//reset count is 0
+	               sleep(500);//pause thread for 500 microsecond
+	           }
+	       }
+	       catch(InterruptedException ie)//handle exception
+	       {
+
+	System.out.println(ie);
+
+	}
+	}
+
+	public PrimeThread() {//default constructor
+
+	}
+}
+
+
+//Class Two
+
+import java.util.Scanner;
+
+public class MultithreadedPrime {
+
+	public MultithreadedPrime() {// default constructor
+	}
+
+	public static void main(String[] args) {
+		  Scanner scnr=new Scanner(System.in);//create Scanner object
+	       int n;
+	       System.out.println("Enter a number to find all the primes # less or equal to it : ");
+	       n=scnr.nextInt();//input number n
+	       PrimeThread prime = new PrimeThread(n);//create thread object
+	       System.out.println("List of prime numbers up to : "+n+"\n");
+	       prime.start();//start calling of run() method
+
+	}
+
+}
