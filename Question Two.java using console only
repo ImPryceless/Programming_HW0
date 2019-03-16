@@ -2,7 +2,10 @@
 //This program will output prime numbers
 //The user will enter a number, and the program will list of prime numbers below the number entered
 
-
+//This program must be run from the command line
+//Navigate to the directory where the file is.
+// Type javac primecheck.java (make sure javac is installed - This command will create a new file with extenssion class)
+// Type java Prime  (This will run the main method)
 
 public class primecheck extends Thread {
 
@@ -51,7 +54,7 @@ public class primecheck extends Thread {
 
 			System.out.println("\n Those were all the primes. Restart to enter new number");
 
-			// Checking for any exceptions
+		// Checking for any exceptions
 		} catch (InterruptedException e)
 
 		{
@@ -70,19 +73,29 @@ class Prime
 
 	{
 
-		System.out.println("Please enter a number to calculate the primes smaller that your number: \n");
-		// Getting the User's input.
-		String number = System.console().readLine();
-		int result = Integer.parseInt(number);
+		//Try catch to prevent user from entering characters 		
+		while (true) {
+			try {
 
-		// Instantiate function
-		primecheck newcheck = new primecheck(result);
-		System.out.println("\n Thread Has Been initiated");
+				System.out.println("Please enter a number to calculate the primes smaller that your number: \n");
+				// Getting the User's input.
+				String number = System.console().readLine();
+				int result = Integer.parseInt(number);
 
-		System.out.println("\n Here is the List of Primes Below the Number you have entered");
+				// Instantiate function
+				primecheck newcheck = new primecheck(result);
+				System.out.println("\n Thread Has Been initiated");
 
-		// start thread to print prime numbers
-		newcheck.start();
+				System.out.println("\n Here is the List of Primes Below the Number you have entered");
+
+				// start thread to print prime numbers
+				newcheck.start();
+
+						
+			} catch (Exception e) {
+				System.out.println("ERROR please enter a valid number: \n");
+			}
+		}
 
 	}
 
