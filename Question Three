@@ -1,1 +1,79 @@
+import java.util.ArrayList;
+import java.util.Scanner;
 
+public class MultiStatistic implements Runnable{
+	
+	//for debugging
+	public static void main(String[ ] args) {
+	        MultiStatistic ms = new MultiStatistic(); //
+	        ms.run();
+	    }
+	  
+	//global variables
+	private double avg = 0.0; 
+	private int max = Integer.MIN_VALUE; //constant holding the maximum value an int can  
+	private int min = Integer.MAX_VALUE; //constant holding the minimum value an int can 
+	private ArrayList<Integer> numbers = new ArrayList<Integer>(); //array where to store the input from user
+	
+	//task for getting the average
+	Runnable getAvg = new Runnable(){  
+	    public void run(){
+	      for(int n: numbers) {
+	    	  avg+=n;
+	      }
+	    }
+	  };  
+	  
+  	//task for getting the minimum value
+	  Runnable getMin = new Runnable(){  
+	    public void run(){
+	    	for(int n: numbers) {
+  	    	  if (n < min) {
+  	    		  min = n;
+  	    	  }
+  	      }
+	    }  
+	  };  
+	  
+	  //task for getting the maximum value
+	  Runnable getMax = new Runnable(){  
+  	    public void run(){  
+  	    	for(int n: numbers) {
+    	    	  if(n > max) {
+    	    		  max = n;
+    	    	  }
+    	      }
+  	    }  
+  	  };  
+    
+
+	@Override
+	public void run() {
+		try {
+			//get input from user
+			System.out.println("Program will begin multithreaded calculation once an input other than an integers is passed. \nEnter integers: ");
+			Scanner sc = new Scanner(System.in);
+			while(sc.hasNextInt()) {
+				numbers.add(sc.nextInt()); 
+			}
+			sc.close();
+				
+			 //create the threads specifying their job.
+			 Thread t1=new Thread(getAvg);  //thread for the average
+			 Thread t2=new Thread(getMin);  //thread for the minimum 
+			 Thread t3=new Thread(getMax);  //thread for the maximum
+			 
+			 //begin their task
+			 t1.start();  //thread to start calculating the average
+			 t2.start(); //thread to start calculating the minimum
+			 t3.start(); //thread to start calculating the maximum
+			 
+		}finally {
+			//all workers are done
+			System.out.println("The average value is " + avg/numbers.size()); //print the average value
+			System.out.println("The minimum value is " + min); //print the minimum value
+			System.out.println("The maximum value is " + max); // print the maximum value
+		}
+
+	}  
+}
