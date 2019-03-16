@@ -1,1 +1,89 @@
+//CMP 426 Group assignment 
+//This program will output prime numbers
+//The user will enter a number, and the program will list of prime numbers below the number entered
 
+
+
+public class primecheck extends Thread {
+
+	int value;
+
+	// constructor with parameter value
+	primecheck(int value) {
+
+		this.value = value;
+
+	}
+
+	// Method for Executing Thread
+	public void run() {
+
+		// Starting the count
+		int count = 0;
+
+		try {
+
+			// Looping through the numbers up to number entered
+			for (int i = 1; i <= value; i++) {
+
+				// Second loops for find primes until n < i
+				for (int n = 1; n <= i; n++) {
+
+					// If mood is 0, increase by one, meaning that the number is divisible by any
+					// number smaller that it
+					if (i % n == 0) {
+						count++;
+					}
+
+				}
+				// Check if number is prime then print if
+				if (count <= 2) {
+					System.out.println(i);
+				}
+
+				// Restarting the count
+				count = 0;
+
+				// Pausing thread for 250 milliseconds
+				sleep(250);
+
+			}
+
+			System.out.println("\n Those were all the primes. Restart to enter new number");
+
+			// Checking for any exceptions
+		} catch (InterruptedException e)
+
+		{
+			System.out.println(e);
+		}
+
+	}
+
+}
+
+class Prime
+
+{
+
+	public static void main(String args[])
+
+	{
+
+		System.out.println("Please enter a number to calculate the primes smaller that your number: \n");
+		// Getting the User's input.
+		String number = System.console().readLine();
+		int result = Integer.parseInt(number);
+
+		// Instantiate function
+		primecheck newcheck = new primecheck(result);
+		System.out.println("\n Thread Has Been initiated");
+
+		System.out.println("\n Here is the List of Primes Below the Number you have entered");
+
+		// start thread to print prime numbers
+		newcheck.start();
+
+	}
+
+}
