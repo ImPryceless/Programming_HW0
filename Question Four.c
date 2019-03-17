@@ -21,14 +21,10 @@ void *fibonacci_thread(void *vargp) {
     pthread_exit(0);
 }
 
-int main() {
+int main(int argc, char* argv[]) {
 
-    // Ask user for input
-    printf("Enter a non-negative integer: ");
-    if (!scanf(" %d", &last) || last < 0) { // Check if valid input
-        printf("Sorry, that's an invalid entry.\nExiting.");
-        return 0;
-    }
+    // Convert input to int
+    last = atoi(argv[1]);
 
     // Start calculation in a new thread
     pthread_t thread_id;
