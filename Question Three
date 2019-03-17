@@ -51,7 +51,7 @@ public class MultiStatistic implements Runnable{
 	public void run() {
 		try {
 			//get input from user
-			System.out.println("Program will begin multithreaded calculation once an input other than an integers is passed. \nEnter integers: ");
+			System.out.println("Program will begin multithreaded calculation once an input other than an integers is passed. \nEnter integers and Press equal sign (=) to show results");
 			Scanner sc = new Scanner(System.in);
 			while(sc.hasNextInt()) {
 				numbers.add(sc.nextInt()); 
