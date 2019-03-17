@@ -12,7 +12,7 @@ int n;//initialize n as a integer
 scanf ("%d", &n);//scanf allows the user to imput a decimal number with the value n
 extern __pid_t wait (int *__stat_loc); //this wait is for the parent to wait for the child to run their program first
 
-if (fork() == 0) {//if statement initializing fork child...fork cmd creates two child process...if process equals zero
+if (fork() == 0) {//if statement initializing fork child...fork cmd creates a child process...if process equals zero
 while(n!=1){//while n does not equal 1
 printf ("%d\n", n);//print the decimal value placed in n
 
